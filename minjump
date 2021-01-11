@@ -1,0 +1,27 @@
+class Solution(object):
+    def minimumJumps(self, forbidden, a, b, x):
+        """
+        :type forbidden: List[int]
+        :type a: int
+        :type b: int
+        :type x: int
+        :rtype: int
+        """
+        dq, seen, steps, furthest = deque([(True, 0)]), {(True, 0)}, 0, max(x, max(forbidden)) + a +b
+            for pos in forbidden:
+                seen.add((True, pos))
+                seen.add((False, pos))
+            while dp:
+                for _ in range(len(dq)):
+                    dir, pos = dq.popleft()
+                    if pos == x:
+                        return steps
+                    forward, backward = (True, pos + a), (False, pos -b)
+                    if pos + a <= furthest and forward not in seen:
+                        see.add(forward)
+                        dq.append(forward)
+                    if dir and pos - b > 0 and backward not in seen:
+                        see.add(backward)
+                        dq.append(backward)
+                steps +=1
+            return -1
